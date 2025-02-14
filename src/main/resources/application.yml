@@ -1,0 +1,31 @@
+server:
+  port: 8080
+  ssl:
+    enabled: false
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/microservices_db
+    username: kiril
+    password: kiril
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  liquibase:
+    change-log: classpath:/db/changelog/create-tables.xml
+
+twelvedata:
+  api-key: f39d556aadf44616bb095a338069c5e6
+  base-url: https://api.twelvedata.com
+
+logging:
+  level:
+    root: info
+    com.stoliar.microservice_exchange: DEBUG
