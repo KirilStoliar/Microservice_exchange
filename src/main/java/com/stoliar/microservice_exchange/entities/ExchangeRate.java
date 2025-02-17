@@ -9,7 +9,10 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "exchange_rates")
+@Table(
+        name = "exchange_rates",
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"currency_pair", "date"})}
+)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,7 +28,7 @@ public class ExchangeRate {
     @Column(name = "rate", nullable = false, precision = 18, scale = 6)
     private BigDecimal rate;
 
-    @Column(name = "date", nullable = false, unique = true)
+    @Column(name = "date", nullable = false)
     private LocalDate date;
 
     @Column(name = "close", nullable = false, precision = 18, scale = 6)

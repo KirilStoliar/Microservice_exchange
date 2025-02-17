@@ -4,7 +4,6 @@ import com.stoliar.microservice_exchange.DTO.TwelveDataResponse;
 import com.stoliar.microservice_exchange.configs.TwelveDataConfig;
 import com.stoliar.microservice_exchange.entities.ExchangeRate;
 import com.stoliar.microservice_exchange.repositories.ExchangeRateRepository;
-import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

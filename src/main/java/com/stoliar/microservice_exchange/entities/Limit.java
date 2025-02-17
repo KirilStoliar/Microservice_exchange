@@ -4,10 +4,12 @@ import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 
+@ToString
 @Entity
 @Table(name = "limits")
 @Getter
@@ -34,8 +36,4 @@ public class Limit {
     @Column(name = "limit_currency_shortname", length = 3, nullable = false)
     @Hidden
     private String limitCurrencyShortname = "USD";
-
-    public String toString() {
-        return "Limit(id=" + this.getId() + ", accountFrom=" + this.getAccountFrom() + ", limitSum=" + this.getLimitSum() + ", expenseCategory=" + this.getExpenseCategory() + ", limitDatetime=" + this.getLimitDatetime() + ", limitCurrencyShortname=" + this.getLimitCurrencyShortname() + ")";
-    }
 }
