@@ -10,7 +10,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -64,7 +66,11 @@ public class ClientController {
     public Transaction getTransactionById(
             @Parameter(description = "Идентификатор транзакции", example = "1", required = true)
             @PathVariable Long id) {
-        return transactionService.getTransactionById(id);
+        Transaction transaction = transactionService.getTransactionById(id);
+        if (transaction == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Transaction not found");
+        }
+        return transaction;
     }
 
     @GetMapping("/exceeded-transactions")
