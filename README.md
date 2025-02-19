@@ -1,6 +1,6 @@
-# REST API
+# Microservice exchange
 
-Микросервис состоит из двух API: банк и клиент. Клиент может получать:
+Microservice_exchange - микросервис, который состоит из двух API: банк и клиент. Клиент может получать:
 * список всех транзакций
 * транзакцию по ID
 * список транзакций, которые превысили лимит.
@@ -17,9 +17,13 @@
 - Logger slf4j, Lombok
 
 В качестве получения данных курсов валют используется сайт https://twelvedata.com/. При остустствии данных стоит ввести свой API-ключ в resources/application.yml.
+Приложение покрыто тестами > 70%.
 
-## Описание запуска
+## Варианты запуска
+```sh
+docker-compose up --build
+```
+Swagger: http://localhost:8080/swagger-ui/index.html#/
+Либо тестирование запросами через Postman. Запросы описаны в BankController и ClientController.
 
-Приложение можно запустить в контейнере Docker. Для этого следует запустить docker-compose.yml. После запуска в адресной строке браузера вводим: http://localhost:8080/swagger-ui/index.html#/ либо тестировать запросы через Postman.
-
-При отсутствии Docker приложение можно запустить в выбранной вами среде разработки через MicroserviceExchangeApplication,  при этом изменив данные для подключения к базе данных postgres в файле resources/application.yml. После запуска вводим в адресной строке браузера: http://localhost:8080/swagger-ui/index.html#/.
+При отсутствии Docker приложение можно запустить в выбранной вами среде разработки через MicroserviceExchangeApplication,  при этом изменив данные для подключения к базе данных postgres в файле resources/application.yml.
