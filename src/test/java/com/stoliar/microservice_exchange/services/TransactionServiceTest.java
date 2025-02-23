@@ -1,6 +1,7 @@
 package com.stoliar.microservice_exchange.services;
 
-import com.stoliar.microservice_exchange.DTO.ExceededTransactionResponseDTO;
+import com.stoliar.microservice_exchange.dto.ExceededTransactionProjection;
+import com.stoliar.microservice_exchange.dto.ExceededTransactionResponseDTO;
 import com.stoliar.microservice_exchange.entities.ExchangeRate;
 import com.stoliar.microservice_exchange.entities.Limit;
 import com.stoliar.microservice_exchange.entities.Transaction;
@@ -17,6 +18,7 @@ import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -147,15 +149,37 @@ public class TransactionServiceTest {
 
     @Test
     void getExceededTransactions_ShouldReturnExceededTransactions() {
-        Object[] result = new Object[]{
-                1L, 2L, "USD", BigDecimal.valueOf(100), "Groceries", Instant.now(), BigDecimal.valueOf(1000), Instant.now(), "USD"
-        };
-        when(transactionRepository.findExceededTransactionsWithLimits(anyLong())).thenReturn(Collections.singletonList(result));
+        ExceededTransactionProjection projection = mock(ExceededTransactionProjection.class);
+
+        when(projection.getAccountFrom()).thenReturn(1L);
+        when(projection.getAccountTo()).thenReturn(2L);
+        when(projection.getCurrencyShortname()).thenReturn("USD");
+        when(projection.getSum()).thenReturn(BigDecimal.valueOf(100));
+        when(projection.getExpenseCategory()).thenReturn("Groceries");
+        when(projection.getDatetime()).thenReturn(Instant.now());
+        when(projection.getLimitSum()).thenReturn(BigDecimal.valueOf(1000));
+        when(projection.getLimitDatetime()).thenReturn(Instant.now());
+        when(projection.getLimitCurrencyShortname()).thenReturn("USD");
+
+        List<ExceededTransactionProjection> projections = new ArrayList<>();
+        projections.add(projection);
+
+        when(transactionRepository.findExceededTransactionsWithLimits(anyLong())).thenReturn(projections);
 
         List<ExceededTransactionResponseDTO> exceededTransactions = transactionService.getExceededTransactions(1L);
 
         assertNotNull(exceededTransactions);
         assertEquals(1, exceededTransactions.size());
+
+        ExceededTransactionResponseDTO dto = exceededTransactions.get(0);
+        assertEquals(1L, dto.getAccountFrom());
+        assertEquals(2L, dto.getAccountTo());
+        assertEquals("USD", dto.getCurrencyShortname());
+        assertEquals(BigDecimal.valueOf(100), dto.getSum());
+        assertEquals("Groceries", dto.getExpenseCategory());
+        assertEquals(BigDecimal.valueOf(1000), dto.getLimitSum());
+        assertEquals("USD", dto.getLimitCurrencyShortname());
+
         verify(transactionRepository, times(1)).findExceededTransactionsWithLimits(1L);
     }
 }

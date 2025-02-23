@@ -3,7 +3,7 @@ package com.stoliar.microservice_exchange.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.stoliar.microservice_exchange.DTO.ExceededTransactionResponseDTO;
+import com.stoliar.microservice_exchange.dto.ExceededTransactionResponseDTO;
 import com.stoliar.microservice_exchange.entities.Transaction;
 import com.stoliar.microservice_exchange.services.TransactionService;
 import org.junit.jupiter.api.BeforeEach;

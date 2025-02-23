@@ -10,19 +10,19 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/bank")
 @Tag(name = "Bank API", description = "API для работы с транзакциями и лимитами")
+@RequiredArgsConstructor(onConstructor_ = {@Autowired})
 public class BankController {
 
-    @Autowired
-    private TransactionService transactionService;
+    private final TransactionService transactionService;
 
-    @Autowired
-    private LimitService limitService;
+    private final LimitService limitService;
 
     @PostMapping("/transaction")
     @Operation(
@@ -45,7 +45,7 @@ public class BankController {
             }
     )
     public Transaction addTransaction(
-            @Parameter (description = "Добавление транзакции", required = true)
+            @Parameter(description = "Добавление транзакции", required = true)
             @RequestBody Transaction transaction) {
         return transactionService.saveTransaction(transaction);
     }

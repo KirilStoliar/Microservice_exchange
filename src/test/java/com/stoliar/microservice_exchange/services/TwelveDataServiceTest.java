@@ -1,6 +1,6 @@
 package com.stoliar.microservice_exchange.services;
 
-import com.stoliar.microservice_exchange.DTO.TwelveDataResponse;
+import com.stoliar.microservice_exchange.dto.TwelveDataResponse;
 import com.stoliar.microservice_exchange.configs.TwelveDataConfig;
 import com.stoliar.microservice_exchange.entities.ExchangeRate;
 import com.stoliar.microservice_exchange.repositories.ExchangeRateRepository;

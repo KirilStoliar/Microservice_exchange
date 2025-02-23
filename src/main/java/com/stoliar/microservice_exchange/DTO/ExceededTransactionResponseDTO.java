@@ -1,4 +1,4 @@
-package com.stoliar.microservice_exchange.DTO;
+package com.stoliar.microservice_exchange.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;

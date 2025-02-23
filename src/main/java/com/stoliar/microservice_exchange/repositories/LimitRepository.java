@@ -9,6 +9,5 @@ import java.util.Optional;
 @Repository
 public interface LimitRepository extends JpaRepository<Limit, Long> {
 
-    // Возвращает последний лимит для указанного accountFrom и expenseCategory
     Optional<Limit> findFirstByAccountFromAndExpenseCategoryOrderByLimitDatetimeDesc(Long accountFrom, String expenseCategory);
 }

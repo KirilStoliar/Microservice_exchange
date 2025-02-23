@@ -1,4 +1,4 @@
-package com.stoliar.microservice_exchange.DTO;
+package com.stoliar.microservice_exchange.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;

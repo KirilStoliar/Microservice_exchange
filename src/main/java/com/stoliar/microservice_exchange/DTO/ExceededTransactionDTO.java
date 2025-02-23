@@ -1,4 +1,4 @@
-package com.stoliar.microservice_exchange.DTO;
+package com.stoliar.microservice_exchange.dto;
 
 import lombok.Getter;
 import lombok.Setter;

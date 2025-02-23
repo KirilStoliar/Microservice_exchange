@@ -6,8 +6,8 @@ server:
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/microservices_db
-    username: kiril
-    password: kiril
+    username:
+    password:
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -22,7 +22,7 @@ spring:
     change-log: classpath:/db/changelog/create-tables.xml
 
 twelvedata:
-  api-key: f39d556aadf44616bb095a338069c5e6
+  api-key:
   base-url: https://api.twelvedata.com
 
 logging:

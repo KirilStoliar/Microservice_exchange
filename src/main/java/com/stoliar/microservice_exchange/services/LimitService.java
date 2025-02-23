@@ -16,7 +16,6 @@ public class LimitService {
     private LimitRepository limitRepository;
 
     public Limit setLimit(Limit limit) {
-        // Устанавливаем лимит для указанного счета и категории расходов
         return limitRepository.save(limit);
     }
 }
